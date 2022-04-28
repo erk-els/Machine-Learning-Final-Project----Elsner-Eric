@@ -15,3 +15,20 @@ Fuel type:
 - N = natural gas
 
 ### Plots
+![Dataset Pairplots](graphs.png)
+
+```
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from numpy import random
+from datetime import datetime
+from sklearn import preprocessing
+from google.colab import files
+files.upload()
+df = pd.read_csv('./CO2 Emissions_Canada.csv')
+df = df.drop(['Fuel Consumption City (L/100 km)', 'Fuel Consumption Hwy (L/100 km)', 'Fuel Consumption Comb (L/100 km)'], axis=1)
+#plot = sns.lineplot(x='Fuel Consumption Comb (mpg)', y='CO2 Emissions(g/km)', hue='Fuel Type', data=df)
+sns.pairplot(df, hue='Fuel Type', kind='kde')
+```
