@@ -16,6 +16,10 @@ Fuel type:
 
 ### Plots
 ![Dataset Pairplots](graphs.png)
+![Cyl Count](Screenshot 2022-05-05 152644.png)
+![Eng Size Count](Screenshot 2022-05-05 152725.png)
+![Fuel Type Count](Screenshot 2022-05-05 153110.png)
+![Trans Count](Screenshot 2022-05-05 153427.png)
 
 ```
 import pandas as pd
@@ -31,4 +35,39 @@ df = pd.read_csv('./CO2 Emissions_Canada.csv')
 df = df.drop(['Fuel Consumption City (L/100 km)', 'Fuel Consumption Hwy (L/100 km)', 'Fuel Consumption Comb (L/100 km)'], axis=1)
 #plot = sns.lineplot(x='Fuel Consumption Comb (mpg)', y='CO2 Emissions(g/km)', hue='Fuel Type', data=df)
 sns.pairplot(df, hue='Fuel Type', kind='kde')
+sns.set(style='whitegrid', palette="deep", font_scale=1.1, rc={"figure.figsize": [8, 5]})
+sns.distplot(
+    df['Engine Size(L)'], norm_hist=False, kde=False, bins=20, hist_kws={"alpha": 1}
+).set(xlabel='Engine Size(L)', ylabel='Count');
+sns.set(rc={'figure.figsize':(11.7,8.27)})
+sns.countplot(df['Transmission'])
+le = preprocessing.LabelEncoder()
+oh = preprocessing.OneHotEncoder()
+
+df['Transmission'] = le.fit_transform(df['Transmission'])
+df['Vehicle Class'] = le.fit_transform(df['Vehicle Class'])
+df['Fuel Type'] = le.fit_transform(df['Fuel Type'])
+#df['Fuel Type'] = oh.fit_transform(df['Fuel Type'].reshape(-1,1)).toarray()
+df['Engine Size STD'] = df['Engine Size(L)'].std()
+df['Engine Size MIN'] = df['Engine Size(L)'].agg("min")
+df['Engine Size MAX'] = df['Engine Size(L)'].agg("max")
+df['Engine Size AVG'] = df['Engine Size(L)'].agg("mean")
+
+test = df.head(750)
+train = df.tail(-750)
+
+scaler = preprocessing.StandardScaler()
+scaler.fit(train)
+
+train = scaler.transform(train)
+test = scaler.transform(test)
+
+y = train[:, 3]
+y_t = test[:, 3]
+
+x = train[: , [0,1,2,4]]
+x = test[: , [0,1,2,4]]
+
+reg = linear_model.LinearRegression()
+
 ```
