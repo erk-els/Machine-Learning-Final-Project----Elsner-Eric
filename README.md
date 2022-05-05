@@ -21,6 +21,7 @@ Fuel type:
 ![Fuel Type Count](Screenshot 2022-05-05 153110.png)
 ![Trans Count](Screenshot 2022-05-05 153427.png)
 
+
 ```
 import pandas as pd
 import numpy as np
@@ -62,12 +63,18 @@ scaler.fit(train)
 train = scaler.transform(train)
 test = scaler.transform(test)
 
-y = train[:, 3]
-y_t = test[:, 3]
+y_t = train[:, 3]
+y = test[:, 3]
 
-x = train[: , [0,1,2,4]]
+x_t = train[: , [0,1,2,4]]
 x = test[: , [0,1,2,4]]
 
-reg = linear_model.LinearRegression()
+linReg = linear_model.LinearRegression()
+logReg = linear_model.LogisticRegression()
+
+linReg.fit(x_t, y_t)
+#logReg.fit(x_t, y_t) 
+
+linReg.score(x_t, y_t)
 
 ```
