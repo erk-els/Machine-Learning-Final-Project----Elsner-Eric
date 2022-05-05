@@ -43,7 +43,11 @@ import matplotlib.pyplot as plt
 from numpy import random
 from datetime import datetime
 from sklearn import preprocessing
+from sklearn import linear_model
+from sklearn.linear_model import Ridge
 from google.colab import files
+from yellowbrick.datasets import load_concrete
+from yellowbrick.regressor import ResidualsPlot
 files.upload()
 df = pd.read_csv('./CO2 Emissions_Canada.csv')
 df = df.drop(['Fuel Consumption City (L/100 km)', 'Fuel Consumption Hwy (L/100 km)', 'Fuel Consumption Comb (L/100 km)'], axis=1)
