@@ -27,13 +27,15 @@ Fuel type:
 ### Plots
 ![Dataset Pairplots](graphs.png)
 
-![Cyl Count](Screenshot 2022-05-05 152644.png)
+![Cyl Count](cyl.png)
 
-![Eng Size Count](Screenshot 2022-05-05 152725.png)
+![Eng Size Count](eng.png)
 
-![Fuel Type Count](Screenshot 2022-05-05 153110.png)
+![Fuel Type Count](fuel.png)
 
-![Trans Count](Screenshot 2022-05-05 153427.png)
+![Trans Count](tran.png)
+
+![Residual](ridge.png)
 
 ```
 import pandas as pd
