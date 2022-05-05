@@ -1,10 +1,18 @@
 Eric Elsner
 CS4200 - Final Project
 
+I defintiely struggled with this project as the understanding of how machine learning works didn't quite leave me confident.
+
 ## Prediction of CO2 emission and Fuel Consumption of Vehicles Based on Fuel Type and Engine Specifications.
 I've chosen this dataset as it could be useful in a marketing perspective.  Attempting to predict the best combination of engine specifications as well as fuel type in regards to finding a perfect balance for fuel consumption and CO2 emissions. This is useful as there are limits to the amount of CO2 a car can produce whilst trying to make an advertisable fuel economy.
 
+The Engine size column I aggregated into a standard deviation, avg, and min/max as I believe it has the most significant impact on my prediction of emissions. Ive decided that Vehicle Class, Transmission Type, and Fuel type should be label-encoded and the engine size would be one hot encoded.  
 
+After scoring the linear regression I received an accuracy of about 18%. In regards to the residual plot, this surely reflects that accuracy.
+
+I believe the linear model is stronger than the logistics model in regards to my plot as it contains mostly numeric values and is not classification type.  My data being already somewhat predictable make linear regression the better model here.
+
+This project is very interesting but I know I am not taking away the full length of information unfortunately. Theres surely things in this project I need to fix butI honestly don't have the time regarding my other classes.
 
 [CO2 Emissions Canada](https://www.kaggle.com/datasets/debajyotipodder/co2-emission-by-vehicles?resource=download)
 
@@ -83,4 +91,9 @@ linReg.fit(x_t, y_t)
 linReg.score(x_t, y_t)
 #logReg.score(x_t, y_t)
 
+model = Ridge()
+visualizer = ResidualsPlot(model)
+visualizer.fit(x_t, y_t)  
+visualizer.score(x, y)
+visualizer.show()  
 ```
